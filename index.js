@@ -3,15 +3,15 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(express.json())
 var morgan = require('morgan')
+const cors = require('cors')
+app.use(cors())
 //app.use(morgan('tiny'))
 
-app.use(morgan(':method :url :res :status :response-time[4] ms'));
+app.use(morgan(':method :url :status :response-time[4] ms :res '));
 
 morgan.token('res', function(res) {
   return JSON.stringify(res.body);
 });
-
-
 
 
 let persons = [
@@ -77,8 +77,9 @@ app.delete("/api/persons/:id", (request, response) => {
 //3.5-3.6: puhelinluettelon backend step5-step6
 app.post('/api/persons', (req, res) => {
     const body = req.body;
-    const randomNumber = Math.floor(Math.random() * 1200000 + 1);
-    console.log(body);
+    //const randomNumber = Math.floor(Math.random() * 1200000 + 1);
+    //const id = Number(request.params.id);
+    //console.log(body);
   
     if (body.name === undefined) {
       return response.status(400).json({ error: 'name is missing' });
@@ -88,8 +89,7 @@ app.post('/api/persons', (req, res) => {
   
     const person = {
       name: body.name,
-      number: body.number,
-      id: randomNumb
+      number: body.number
     };
   
     persons = persons.concat(person);

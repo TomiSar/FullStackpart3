@@ -1,7 +1,7 @@
-POST http://localhost:3001/api/persons
-content-type: application/json 
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
 
 {
-  "name": "Teppo tha testailija",
-  "number": "050-321456"
+  "name": "Sami Salovaara",
+  "number": "019-0987651"
 }
